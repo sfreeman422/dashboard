@@ -24,8 +24,11 @@ app.use(bodyParser());
 app.use(express.static('./public'));
 app.use(methodOverride("_method"));
 
+//Main route designed to serve the HTML. 
 app.get("/", function(req, res){
 	res.sendFile("./public/index.html");
 });
 
-app.listen(PORT);
+app.listen(PORT, function(){
+	console.log("Listening on port "+PORT);
+});

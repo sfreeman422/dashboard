@@ -41326,6 +41326,10 @@ var _Time = __webpack_require__(347);
 
 var _Time2 = _interopRequireDefault(_Time);
 
+var _Productivity = __webpack_require__(348);
+
+var _Productivity2 = _interopRequireDefault(_Productivity);
+
 var _keys = __webpack_require__(346);
 
 var _keys2 = _interopRequireDefault(_keys);
@@ -41363,12 +41367,15 @@ var Main = function (_React$Component) {
 			sunset: "loading...",
 			weather: "loading...",
 			temperature: "loading...",
-			weatherPic: "loading..."
+			weatherPic: "loading...",
+			//Productivity
+			stats: "loading..."
 			//More states as we determine which services we want to integrate here. 
 		};
 		_this._getTime = _this._getTime.bind(_this);
 		_this._getLocation = _this._getLocation.bind(_this);
 		_this._locationThenWeather = _this._locationThenWeather.bind(_this);
+		_this._getProductivity = _this._getProductivity.bind(_this);
 		return _this;
 	}
 	//Gets the time for the clock component
@@ -41454,10 +41461,24 @@ var Main = function (_React$Component) {
 			}
 		}
 	}, {
+		key: '_getProductivity',
+		value: function _getProductivity() {
+			var _this3 = this;
+
+			$.ajax({
+				url: "https://www.rescuetime.com/anapi/data?key=" + _keys2.default.rescuetime + "&perspective=rank&interval=day&restrict_begin=2017-07-06&restrict_end=2017-07-06&format=json"
+			}).done(function (response) {
+				_this3.setState({
+					stats: response
+				});
+			});
+		}
+	}, {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
 			this._locationThenWeather();
 			this._getTime();
+			this._getProductivity();
 			//Runs the locationThenWeather function every 60 seconds. We do this to avoid 6 API calls within the one minute in which we are at a :00 time. 
 			var weatherInterval = setInterval(this._locationThenWeather, 60000);
 			//Get the time every 1/10 of a second, this will also setState for time to the current time. 
@@ -41479,6 +41500,11 @@ var Main = function (_React$Component) {
 					{ className: 'row' },
 					_react2.default.createElement(_Weather2.default, { location: this.state.userLoc, weather: this.state.weather, temperature: this.state.temperature, weatherPic: this.state.weatherPic, sunrise: this.state.sunrise, sunset: this.state.sunset }),
 					_react2.default.createElement(_Calendar2.default, { day: this.state.day, month: this.state.month })
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					_react2.default.createElement(_Productivity2.default, { stats: this.state.stats })
 				)
 			);
 		}
@@ -42036,7 +42062,8 @@ exports.default = Calendar;
 
 
 var keys = {
-    wunderground: "ffffb1ced1210b50"
+    wunderground: "ffffb1ced1210b50",
+    rescuetime: "B63YachsDicTB5qeVqJZA3buwfVttiY9FTDps7IZ" //This will need to be from the user, only for testing purposes.
 };
 
 module.exports = keys;
@@ -42112,6 +42139,56 @@ var Time = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Time;
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Productivity = function (_React$Component) {
+    _inherits(Productivity, _React$Component);
+
+    function Productivity() {
+        _classCallCheck(this, Productivity);
+
+        return _possibleConstructorReturn(this, (Productivity.__proto__ || Object.getPrototypeOf(Productivity)).call(this));
+    }
+
+    _createClass(Productivity, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "col-xs-12 centerText" },
+                this.props.stats
+            );
+        }
+    }]);
+
+    return Productivity;
+}(_react2.default.Component);
+
+exports.default = Productivity;
 
 /***/ })
 /******/ ]);

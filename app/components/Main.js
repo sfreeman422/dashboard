@@ -5,6 +5,7 @@ import Profile from './Children/Profile.js'
 import Weather from './Children/Weather.js'
 import Calendar from './Children/Calendar.js'
 import Time from './Children/Time.js'
+import Productivity from './Children/Productivity.js'
 import keys from '../../private/keys.js'
 
 export default class Main extends React.Component{
@@ -27,12 +28,15 @@ export default class Main extends React.Component{
 			sunset: "loading...",
 			weather: "loading...",
 			temperature: "loading...",
-			weatherPic: "loading..."
+			weatherPic: "loading...",
+			//Productivity
+			stats: "loading..."
 			//More states as we determine which services we want to integrate here. 
 		}
 		this._getTime = this._getTime.bind(this);
 		this._getLocation = this._getLocation.bind(this);
-		this._locationThenWeather = this._locationThenWeather.bind(this)
+		this._locationThenWeather = this._locationThenWeather.bind(this);
+		this._getProductivity = this._getProductivity.bind(this);
 	}
 	//Gets the time for the clock component
 	_getTime(){
@@ -108,9 +112,19 @@ export default class Main extends React.Component{
 				});
 			}
 		}
+	_getProductivity(){
+		$.ajax({
+			url: "https://www.rescuetime.com/anapi/data?key="+keys.rescuetime+"&perspective=rank&interval=day&restrict_begin=2017-07-06&restrict_end=2017-07-06&format=json"
+		}).done((response) => {
+			this.setState({
+				stats: response
+			})
+		});
+	}
 	componentDidMount(){
 		this._locationThenWeather();
 		this._getTime();
+		this._getProductivity();
 		//Runs the locationThenWeather function every 60 seconds. We do this to avoid 6 API calls within the one minute in which we are at a :00 time. 
 		let weatherInterval = setInterval(this._locationThenWeather, 60000);
 		//Get the time every 1/10 of a second, this will also setState for time to the current time. 
@@ -124,6 +138,9 @@ export default class Main extends React.Component{
 				<div className="row">
 					<Weather location = {this.state.userLoc} weather={this.state.weather} temperature={this.state.temperature} weatherPic={this.state.weatherPic} sunrise={this.state.sunrise} sunset={this.state.sunset}/>
 					<Calendar day={this.state.day} month={this.state.month}/>
+				</div>
+				<div className="row">
+					<Productivity stats={this.state.stats}/>
 				</div>
 		</div>);
 	};

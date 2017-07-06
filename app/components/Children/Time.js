@@ -1,14 +1,17 @@
 import React from 'react'
 
-export default class Weather extends React.Component{
+export default class Time extends React.Component{
 	constructor(){
 		super();
 	}
 	render(){
-		return(<div className="row" id="time">
-			<h1>{this.props.time}</h1>
-            <h2>{this.props.date}</h2>
-            <h3>{this.props.day}</h3>
+		return(<div className="col-xs-12 centerText" id="time">
+			<span id="subTime">{this.props.time+" "}</span>
+			<div className="row">
+				<div className="col-xs-12 centerText">
+					<span id="date">{this.props.date+" "}</span><span id="dayOfWeek">{this.props.today+" "}</span>
+				</div>
+			</div>
 		</div>);
 	};
 }

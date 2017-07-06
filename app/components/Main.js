@@ -4,6 +4,7 @@ import moment from 'moment'
 import Profile from './Children/Profile.js'
 import Weather from './Children/Weather.js'
 import Calendar from './Children/Calendar.js'
+import Time from './Children/Time.js'
 import keys from '../../private/keys.js'
 
 export default class Main extends React.Component{
@@ -11,12 +12,14 @@ export default class Main extends React.Component{
 		super();
 		this.state = {
 			//Calendar component Data
-			calendar: "do something",
 			time: moment().format("hh:mm"+"a"),
 			date: moment().format("MMMM Do YYYY"),
+			day: moment().format("D"),
+			month: moment().format("MMMM"),
 			today: moment().format("dddd"),
 			//Profile component data
 			firstName: 'Steve',
+			userPic: "http://stevefreeman.io/images/profile.png",
 			//Weather Component data
 			userLoc: "loading..",
 			hasWeatherData: false,
@@ -115,9 +118,13 @@ export default class Main extends React.Component{
 	}
 	render(){
 		return(<div className="content">
-			<Profile firstName={this.state.firstName} />
-			<Weather location = {this.state.userLoc} weather={this.state.weather} temperature={this.state.temperature} weatherPic={this.state.weatherPic} sunrise={this.state.sunrise} sunset={this.state.sunset}/>
-			<Calendar calendar={this.state.calendar}/>
+				<div className="row">
+					<Profile firstName={this.state.firstName} userPic={this.state.userPic} time={this.state.time}/>
+				</div>
+				<div className="row">
+					<Weather location = {this.state.userLoc} weather={this.state.weather} temperature={this.state.temperature} weatherPic={this.state.weatherPic} sunrise={this.state.sunrise} sunset={this.state.sunset}/>
+					<Calendar day={this.state.day} month={this.state.month}/>
+				</div>
 		</div>);
 	};
 }

@@ -125,7 +125,7 @@ export default class Main extends React.Component{
 	componentDidMount(){
 		this._locationThenWeather();
 		this._getTime();
-		this._getProductivity();
+		//this._getProductivity();
 		//Runs the locationThenWeather function every 60 seconds. We do this to avoid 6 API calls within the one minute in which we are at a :00 time. 
 		let weatherInterval = setInterval(this._locationThenWeather, 60000);
 		//Get the time every 1/10 of a second, this will also setState for time to the current time. 

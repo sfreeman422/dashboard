@@ -9,6 +9,7 @@ export default class Productivity extends React.Component{
             fakeData: dummyData
         }
         this._buildArray = this._buildArray.bind(this);
+        this._buildChart = this._buildChart.bind(this);
     }
     _buildArray(){
         //Holds the test data from an API call I made using postman. This will eventually hold real data
@@ -35,12 +36,16 @@ export default class Productivity extends React.Component{
         }
         
     }
-    componentWillMount(){
+    _buildChart(){
         this._buildArray();
+        
+    }
+    componentDidMount(){
+        this._buildChart();
     }
     render(){
-        return(<div className="col-xs-12 centerText">
-
+        return(<div className="col-xs-12 centerText chart">
+                <svg id="prodChart"></svg>
                </div>
             )
     }

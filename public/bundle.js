@@ -42165,6 +42165,7 @@ var Productivity = function (_React$Component) {
             fakeData: _dummyData2.default
         };
         _this._buildArray = _this._buildArray.bind(_this);
+        _this._buildChart = _this._buildChart.bind(_this);
         return _this;
     }
 
@@ -42190,14 +42191,23 @@ var Productivity = function (_React$Component) {
             }
         }
     }, {
-        key: 'componentWillMount',
-        value: function componentWillMount() {
+        key: '_buildChart',
+        value: function _buildChart() {
             this._buildArray();
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this._buildChart();
         }
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', { className: 'col-xs-12 centerText' });
+            return _react2.default.createElement(
+                'div',
+                { className: 'col-xs-12 centerText chart' },
+                _react2.default.createElement('svg', { id: 'prodChart' })
+            );
         }
     }]);
 

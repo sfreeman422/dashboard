@@ -41330,6 +41330,10 @@ var _Productivity = __webpack_require__(347);
 
 var _Productivity2 = _interopRequireDefault(_Productivity);
 
+var _Sun = __webpack_require__(349);
+
+var _Sun2 = _interopRequireDefault(_Sun);
+
 var _keys = __webpack_require__(348);
 
 var _keys2 = _interopRequireDefault(_keys);
@@ -41499,7 +41503,8 @@ var Main = function (_React$Component) {
 					'div',
 					{ className: 'row' },
 					_react2.default.createElement(_Weather2.default, { location: this.state.userLoc, weather: this.state.weather, temperature: this.state.temperature, weatherPic: this.state.weatherPic, sunrise: this.state.sunrise, sunset: this.state.sunset }),
-					_react2.default.createElement(_Calendar2.default, { day: this.state.day, month: this.state.month })
+					_react2.default.createElement(_Calendar2.default, { day: this.state.day, month: this.state.month }),
+					_react2.default.createElement(_Sun2.default, { sunrise: this.state.sunrise._i, sunset: this.state.sunset._i })
 				),
 				_react2.default.createElement(
 					'div',
@@ -41830,6 +41835,9 @@ var Profile = function (_React$Component) {
 	}
 
 	_createClass(Profile, [{
+		key: "_determineTimeofDay",
+		value: function _determineTimeofDay() {}
+	}, {
 		key: "render",
 		value: function render() {
 			return _react2.default.createElement(
@@ -42144,7 +42152,12 @@ var Productivity = function (_React$Component) {
     function Productivity() {
         _classCallCheck(this, Productivity);
 
-        return _possibleConstructorReturn(this, (Productivity.__proto__ || Object.getPrototypeOf(Productivity)).call(this));
+        var _this = _possibleConstructorReturn(this, (Productivity.__proto__ || Object.getPrototypeOf(Productivity)).call(this));
+
+        _this.state = {
+            fakeData: []
+        };
+        return _this;
     }
 
     _createClass(Productivity, [{
@@ -42176,6 +42189,82 @@ var keys = {
 };
 
 module.exports = keys;
+
+/***/ }),
+/* 349 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Sun = function (_React$Component) {
+    _inherits(Sun, _React$Component);
+
+    function Sun() {
+        _classCallCheck(this, Sun);
+
+        return _possibleConstructorReturn(this, (Sun.__proto__ || Object.getPrototypeOf(Sun)).call(this));
+    }
+    //Warning: the sunriseData and sunsetData divs are not going to be responsive when configured this way.
+    //We will need to implement Flexbox here to make this happen. 
+
+
+    _createClass(Sun, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "col-xs-4 centerText", id: "sun" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "sunData" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "sunriseData" },
+                        _react2.default.createElement("i", { className: "wi wi-horizon-alt" }),
+                        _react2.default.createElement(
+                            "h1",
+                            null,
+                            this.props.sunrise
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "sunsetData" },
+                        _react2.default.createElement("i", { className: "wi wi-horizon" }),
+                        _react2.default.createElement(
+                            "h1",
+                            null,
+                            this.props.sunset
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Sun;
+}(_react2.default.Component);
+
+exports.default = Sun;
 
 /***/ })
 /******/ ]);

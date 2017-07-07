@@ -6,6 +6,7 @@ import Weather from './Children/Weather.js'
 import Calendar from './Children/Calendar.js'
 import Time from './Children/Time.js'
 import Productivity from './Children/Productivity.js'
+import Sun from './Children/Sun.js'
 import keys from '../../private/keys.js'
 
 export default class Main extends React.Component{
@@ -138,6 +139,7 @@ export default class Main extends React.Component{
 				<div className="row">
 					<Weather location = {this.state.userLoc} weather={this.state.weather} temperature={this.state.temperature} weatherPic={this.state.weatherPic} sunrise={this.state.sunrise} sunset={this.state.sunset}/>
 					<Calendar day={this.state.day} month={this.state.month}/>
+					<Sun sunrise={this.state.sunrise._i} sunset={this.state.sunset._i}/>
 				</div>
 				<div className="row">
 					<Productivity stats={this.state.stats}/>

@@ -22,3 +22,16 @@ img{
     border-width: 4px;
     border-color: black;
 }
+.sunData{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.sunriseData{
+    display: flex;
+    flex-direction: column;
+}
+.sunsetData{
+    display: flex;
+    flex-direction: column;
+}

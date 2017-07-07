@@ -4,6 +4,9 @@ export default class Profile extends React.Component{
 	constructor(){
 		super();
 	}
+	_determineTimeofDay(){
+	
+	}
 	render(){
 		return(<div className="col-xs-12 centerText" id="profile">
 				<img id="profilePicture" src={this.props.userPic}/>

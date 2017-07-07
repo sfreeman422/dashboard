@@ -41322,15 +41322,15 @@ var _Calendar = __webpack_require__(345);
 
 var _Calendar2 = _interopRequireDefault(_Calendar);
 
-var _Time = __webpack_require__(347);
+var _Time = __webpack_require__(346);
 
 var _Time2 = _interopRequireDefault(_Time);
 
-var _Productivity = __webpack_require__(348);
+var _Productivity = __webpack_require__(347);
 
 var _Productivity2 = _interopRequireDefault(_Productivity);
 
-var _keys = __webpack_require__(346);
+var _keys = __webpack_require__(348);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -42026,20 +42026,7 @@ var Calendar = function (_React$Component) {
 			return _react2.default.createElement(
 				"div",
 				{ className: "col-xs-4 centerText", id: "calendar" },
-				_react2.default.createElement(
-					"div",
-					{ className: "calDisplay" },
-					_react2.default.createElement(
-						"h1",
-						null,
-						this.props.day
-					),
-					_react2.default.createElement(
-						"h2",
-						null,
-						this.props.month
-					)
-				),
+				_react2.default.createElement("i", { className: "icon icon-" + this.props.day }),
 				_react2.default.createElement(
 					"h2",
 					null,
@@ -42056,20 +42043,6 @@ exports.default = Calendar;
 
 /***/ }),
 /* 346 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var keys = {
-    wunderground: "ffffb1ced1210b50",
-    rescuetime: "B63YachsDicTB5qeVqJZA3buwfVttiY9FTDps7IZ" //This will need to be from the user, only for testing purposes.
-};
-
-module.exports = keys;
-
-/***/ }),
-/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42141,7 +42114,7 @@ var Time = function (_React$Component) {
 exports.default = Time;
 
 /***/ }),
-/* 348 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42189,6 +42162,20 @@ var Productivity = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Productivity;
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var keys = {
+    wunderground: "ffffb1ced1210b50",
+    rescuetime: "B63YachsDicTB5qeVqJZA3buwfVttiY9FTDps7IZ" //This will need to be from the user, only for testing purposes.
+};
+
+module.exports = keys;
 
 /***/ })
 /******/ ]);
